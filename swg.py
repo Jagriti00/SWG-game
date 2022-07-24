@@ -1,38 +1,51 @@
 import random
+import sys
 print("Welcome to the SNAKE WATER GUN game")
 inpName = input("Enter Your Name: ")
-itemList = ["Snake", "Water", "Gun"]
-numberTry = 10
+itemList = ["snake", "water", "gun"]
 
-while True:
 
-    selectName = input("Please Select From (Snake, Water, Gun): ")
-    if selectName == "Snake":
+def Winner():
+    print(a)
+    print("Hurray!, ",inpName, " Is the Winner")
+    sys.exit()
+
+def game():
+    # Changed from while loop to for loop and reverse counting
+    for numberTry in range(9, 0, -1):
+
+        def tryleft():
+            print("Try Left : ", numberTry)
+
+        selectName = str(input("Please Select From (Snake, Water, Gun): "))
+        global a
         a = random.choice(itemList)
-        print(a)
-        numberTry -= 1
-        print("Try Left : ", numberTry)
+        selectName = selectName.lower()
+        # a = "water"
 
-    elif numberTry == 1:
-        if selectName >= random.choice(itemList):
-            print("Hurray!, ",inpName, " Is the Winner")
-            exit()
-        else:
-            print("Computer is the Winner")
-        print("Game Over !")
-        break
+        if selectName == "snake":
+            if a == "water":
+                Winner()
+            else: 
+                print(a)
+                tryleft()
 
-    elif selectName == "Water":
-        a = random.choice(itemList)
-        print(a)
-        numberTry -= 1
-        print("Try Left : ", numberTry)
+        elif selectName == "water":
+            if a == "gun":
+                Winner()
+            else: 
+                print(a)
+                tryleft()
 
-    elif selectName == "Gun":
-        a = random.choice(itemList)
-        print(a)
-        numberTry -= 1
-        print("Try Left : ", numberTry)
+        elif selectName == "gun":
+            if a == "snake":
+                Winner()
+            else: 
+                print(a)
+                tryleft()
+        
+        else :
+            print("Invalid Selection")
 
-    else:
-        print("Invalid Selection")
+if __name__=="__main__":
+    game()
